@@ -237,7 +237,7 @@ exports.randomcheck = function (req, res, next) {
 
     var answer = req.query.answer || "";
 
-    var result = answer.toLowerCase().trim() === rec.quiz.answer.toLocaleLowerCase().trim();
+    var result = answer.toLowerCase().trim() === req.quiz.answer.toLocaleLowerCase().trim();
 
     if (result) {
         req.session.score++;
