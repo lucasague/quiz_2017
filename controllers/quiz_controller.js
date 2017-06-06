@@ -222,7 +222,7 @@ exports.randomplay = function (req, res, next) {
         }
         models.Quiz.findById(quizId).then(function (quiz) {
             if (quiz) {
-                rez.quiz = quiz;
+                req.quiz = quiz;
                 res.render('quizzes/random_play', {
                     score: req.session.score,
                     quiz: req.quiz
