@@ -35,10 +35,10 @@ router.get('/help', function(req, res, next) {
 });
 
 // Pagina de juego aleatorio
-router.get('/quizzes/randomplay',                     quizController.randomPlay);
+router.get('/quizzes/random_play',                     quizController.randomPlay);
 
 
 // Pagina de comprobación
-router.get('/quizzes/randomcheck',                     quizController.randomCheck);
+router.get('/quizzes/random_check',                     quizController.randomCheck);
 
 module.exports = router;
