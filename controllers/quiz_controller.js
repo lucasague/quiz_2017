@@ -25,7 +25,7 @@ exports.load = function (req, res, next, quizId) {
 exports.index = function (req, res, next) {
 
     var countOptions = {};
-
+    req.session.score=0;
     // Busquedas:
     var search = req.query.search || '';
     if (search) {
