@@ -228,9 +228,9 @@ exports.randomplay = function (req, res, next) {
                     quiz: req.quiz
                 });
             }
-        })
+        });
     });
-}
+};
 
 
 exports.randomcheck = function (req, res, next) {
