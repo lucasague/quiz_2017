@@ -35,7 +35,7 @@ router.get('/help', function(req, res, next) {
 });
 
 // Pagina de juego aleatorio
-router.get('/quizzes/randomplay/, quizController.randomplay);
+router.get('/quizzes/randomplay', quizController.randomplay);
 
 
 // Pagina de comprobación

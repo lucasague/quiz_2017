@@ -199,8 +199,9 @@ exports.randomplay = function (req, res, next) {
     models.Quiz.findAll().then(function (quizzes) {
 
         if (req.session.score === 0 && req.session.array.length === 0)
-            for (var i = 0; i < quizzes.length; i++)
+            for (var i = 0; i < quizzes.length; i++) {
                 req.session.array.push(i);
+            }
 
         if (req.session.array === 0)
             res.render('quizzes/random_nomore', {
