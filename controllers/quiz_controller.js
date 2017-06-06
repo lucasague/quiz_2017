@@ -232,8 +232,6 @@ exports.randomplay = function (req, res, next) {
     });
 }
 
-        //eliminar del array el que ya he usado
-
 
 exports.randomcheck = function (req, res, next) {
 
