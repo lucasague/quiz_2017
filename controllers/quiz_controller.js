@@ -187,3 +187,68 @@ exports.check = function (req, res, next) {
         answer: answer
     });
 };
+
+
+exports.randomplay = function (req, res, next) {
+
+    req.session.socre = seq.session.score || 0;
+    req.session.array = req.session.array || [];
+    var quizId;
+    var indice;
+
+    models.Quiz.findAll().then(function (quizzes) {
+
+        if (req.session.score === 0 && req.session.array.length === 0)
+            for (var i = 0; i < quizzes.length; i++)
+                req.session.array.push(i);
+
+        if (req.session.array === 0)
+            res.render('quizzes/randomnomore', {
+                score: req.session.score
+            });
+
+        if (req.session.array === 1) {
+            quizId = req.session.array[0];
+            req.session.array.splice(0, 1);
+        }
+
+        while (req.session.array > 1) {
+            quizId = Math.floor(Math.random() * req.session.array.length + 1);
+            indice = req.session.array.indexOf(quizId);
+            if (indice != -1) {
+                req.session.array.splice(indice, 1);
+                break;
+            }
+        }
+        models.Quiz.findById(quizId).then(function (quiz) {
+            if (quiz) {
+                rez.quiz = quiz;
+                res.render('quizzes/randomplay', {
+                    score: req.session.score,
+                    quiz: req.quiz
+                });
+            }
+        })
+    });
+}
+
+        //eliminar del array el que ya he usado
+
+
+exports.randomcheck = function (req, res, next) {
+
+    var answer = req.query.answer || "";
+
+    var result = answer.toLowerCase().trim() === rec.quiz.answer.toLocaleLowerCase().trim();
+
+    if (result) {
+        req.session.score++;
+    }else {
+        req.session.score =0;
+    }
+    res.render('quizzes/random_result',{
+    score:req.session.score,
+        result:result,
+        answer:answer
+    });
+};
