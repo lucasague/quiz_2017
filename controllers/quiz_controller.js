@@ -239,7 +239,7 @@ exports.randomcheck = function (req, res, next) {
 
     var result = answer.toLowerCase().trim() === req.quiz.answer.toLocaleLowerCase().trim();
 
-    if (result) {
+    if (result===true) {
         req.session.score++;
     }else {
         req.session.score =0;
