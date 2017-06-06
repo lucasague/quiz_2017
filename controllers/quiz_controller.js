@@ -191,7 +191,7 @@ exports.check = function (req, res, next) {
 
 exports.randomplay = function (req, res, next) {
 
-    req.session.score = seq.session.score || 0;
+    req.session.score = req.session.score || 0;
     req.session.array = req.session.array || [];
     var quizId;
     var indice;
