@@ -37,10 +37,13 @@ exports.new = function (req, res, next) {
 // POST /quizzes/:quizId/tips
 exports.create = function (req, res, next) {
 
+    var author_id = req.session.user && req.session.id || 0;
+
     var tip = models.Tip.build(
         {
             text: req.body.text,
-            QuizId: req.quiz.id
+            QuizId: req.quiz.id,
+            AuthorId: author_id
         });
 
     tip.save()
@@ -95,4 +98,18 @@ exports.destroy = function (req, res, next) {
     .catch(function (error) {
         next(error);
     });
+};
+
+exports.adminOrAuthorRequired = function (req, res, next) {
+
+    var isAdmin = req.session.user.isAdmin;
+    var isAuthor = req.session.user.id===req.tip.AuthorId;
+
+    if(isAdmin || isAuthor){
+        next();
+    }
+    else {
+        console.log('Operación prohibida: El usuario logeado no es el autor del quiz, ni un administrador.');
+        res.send(403);
+    }
 };

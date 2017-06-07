@@ -8,7 +8,9 @@ exports.load = function (req, res, next, quizId) {
 
     models.Quiz.findById(quizId, {
         include: [
-            models.Tip,
+            {model: models.Tip, include:[{
+                model: models.user, as:"Author"
+            }]},
             {model: models.User, as: 'Author'}
         ]
     })
