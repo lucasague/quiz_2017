@@ -10,7 +10,7 @@ module.exports = {
             'Tips',
             'AuthorId',
             {
-                type: Sequelize.STRING
+                type: Sequelize.INTEGER
             }
         );
     },
