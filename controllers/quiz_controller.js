@@ -64,13 +64,8 @@ exports.index = function (req, res, next) {
 
     // Si existe req.user, mostrar solo sus preguntas.
     if (req.user) {
-        countOptions.where = {AuthorId: req.user.id};
-
-        if (req.session.user && req.session.user.id == req.user.id) {
-            title = "Mis Preguntas";
-        } else {
-            title = "Preguntas de " + req.user.username;
-        }
+        countOptions.where.AuthorId = req.user.id;
+        title = "Preguntas de " + req.user.username;
     }
 
     models.Quiz.count(countOptions)
