@@ -8,7 +8,7 @@ module.exports = {
     up: function (queryInterface, Sequelize) {
         return queryInterface.addColumn(
             'Tips',
-            'AuthorTip',
+            'AuthorId',
             {
                 type: Sequelize.STRING
             }
@@ -16,6 +16,6 @@ module.exports = {
     },
 
     down: function (queryInterface, Sequelize) {
-        return queryInterface.removeColumn('Tips', 'AuthorTip');
+        return queryInterface.removeColumn('Tips', 'AuthorId');
     }
 };
